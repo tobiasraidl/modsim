@@ -1,0 +1,9 @@
+# Threshold
+# tau > 0
+TAU: 0.2
+
+# Adjustment parameter
+# 0 < mu < 0.5
+MU: 0.4
+
+NUMBER_AGENTS: 100
