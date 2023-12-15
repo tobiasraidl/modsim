@@ -1,9 +1,17 @@
+# Type of space (only influences which agents meet)
+# Possible values: "random", "grid", "network"
+SPACE_TYPE: "grid"
+
 # Threshold
 # tau > 0
-TAU: 0.2
+TAU: 0.3
 
 # Adjustment parameter
 # 0 < mu < 0.5
 MU: 0.4
 
-NUMBER_AGENTS: 100
+# Number of agents
+NUMBER_AGENTS: 200
+
+GRID_SIZE: 20
+

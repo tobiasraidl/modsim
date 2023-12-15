@@ -6,5 +6,6 @@ Configurate model parameters in params.yaml
 Execute server.py in order to run the model
 
 ## Grid Model
+The grid size is always NUMBER_AGENTS x NUMBER_AGENTS
 
 ## Network Model
