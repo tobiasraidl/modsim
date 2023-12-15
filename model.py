@@ -14,6 +14,7 @@ with open("params.yaml", "r") as file:
     data = yaml.safe_load(file)
     
 SPACE_TYPE = data["SPACE_TYPE"]
+MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
 
 class OpinionModel(Model):
     
@@ -63,7 +64,7 @@ class OpinionModel(Model):
     def step_grid(self):
         shuffled_agents = random.sample(self.schedule.agents, len(self.schedule.agents))
         for agent in shuffled_agents:
-            neighbors = self.grid.get_neighbors(agent.pos, moore=False, include_center=False)
+            neighbors = self.grid.get_neighbors(agent.pos, moore=MOORE_NEIGHBORHOOD, include_center=False)
             if neighbors:
                 chosen_neighbor = self.random.choice(neighbors)
                 self.agents_meet(agent, chosen_neighbor)

@@ -11,7 +11,12 @@ TAU: 0.3
 MU: 0.4
 
 # Number of agents
-NUMBER_AGENTS: 200
+NUMBER_AGENTS: 2
 
-GRID_SIZE: 20
+GRID_SIZE: 5
+
+# Neighborhood definition
+# TRUE: 8 neighboring cells
+# FALSE: 4 neighboring cells
+MOORE_NEIGHBORHOOD: FALSE
 

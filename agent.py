@@ -9,6 +9,7 @@ with open("params.yaml", "r") as file:
 TAU = data["TAU"]
 MU = data["MU"]
 SPACE_TYPE = data["SPACE_TYPE"]
+MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
 
 class OpinionAgent(Agent):
     
@@ -21,21 +22,20 @@ class OpinionAgent(Agent):
         self.move()
     
     def move(self) -> None:
-        self.model.grid.move_to_empty(self)
-        # # Check for free cells in neighborhood
-        # available_cells = self.model.grid.get_neighborhood(
-        #     self.pos, 
-        #     moore=False, 
-        #     include_center=False)
+        # Check for free cells in neighborhood
+        available_cells = self.model.grid.get_neighborhood(
+            self.pos, 
+            moore=MOORE_NEIGHBORHOOD, 
+            include_center=False)
         
-        # idxs = [i for i in range(0, len(available_cells))]
-        # random.shuffle(idxs)
+        idxs = [i for i in range(0, len(available_cells))]
+        random.shuffle(idxs)
         
-        # # Choose a random unoccupied neighboring cell
-        # for idx in idxs:
-        #     cell = available_cells[idx]
-        #     if (self.model.grid.is_cell_empty(cell)):
-        #         self.model.grid.move_agent(self, cell)
+        # Choose a random unoccupied neighboring cell
+        for idx in idxs:
+            cell = available_cells[idx]
+            if (self.model.grid.is_cell_empty(cell)):
+                self.model.grid.move_agent(self, cell)
         
     def meet(self, partner_opinion):
         if abs(self.opinion-partner_opinion) <= TAU:
