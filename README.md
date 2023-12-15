@@ -3,6 +3,8 @@ Random, grid and network structured agent based opinion models
 Configurate model parameters in params.yaml  
 Execute server.py in order to run the model  
 
+![plot](./example_lineplot.png)
+
 ## Random Model
 Each step 2 agents are randomly selected.
 
