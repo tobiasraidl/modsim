@@ -15,6 +15,7 @@ with open("params.yaml", "r") as file:
     
 SPACE_TYPE = data["SPACE_TYPE"]
 MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
+PLOT_AFTER = data["PLOT_AFTER"]
 
 class OpinionModel(Model):
     
@@ -84,7 +85,7 @@ class OpinionModel(Model):
         elif SPACE_TYPE == "network":
             self.step_network()
         
-        if self.schedule.steps % 1000 == 0:
+        if self.schedule.steps % PLOT_AFTER == 0:
             df = pd.DataFrame(self.opinions_history)
             print(df)
             for column in df.columns:

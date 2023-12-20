@@ -11,12 +11,14 @@ TAU: 0.3
 MU: 0.4
 
 # Number of agents
-NUMBER_AGENTS: 2
+NUMBER_AGENTS: 200
 
-GRID_SIZE: 5
+GRID_SIZE: 50
 
 # Neighborhood definition
-# TRUE: 8 neighboring cells
-# FALSE: 4 neighboring cells
+# TRUE: Moore neighborhood
+# FALSE: Von-Neumann neighborhood
 MOORE_NEIGHBORHOOD: FALSE
 
+# After how many steps a lineplot of all agents should be plotted
+PLOT_AFTER: 1000

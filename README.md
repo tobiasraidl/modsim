@@ -1,7 +1,7 @@
 # Agent Based Opinion Model
 Random, grid and network structured agent based opinion models  
 Configurate model parameters in params.yaml  
-Execute server.py in order to run the model  
+Execute server.py in order to run the model
 
 ![plot](./example_lineplot.png)
 
@@ -13,6 +13,10 @@ Each step 2 neighboring agents are randomly selected.
 
 ## Network Model
 Not yet started
+
+## Setup
+`pip install mesa`
+`pip install seaborn`
 
 ## TODO
 - [x] Implement logic for agents to not move on occupied fields
@@ -27,4 +31,5 @@ Not yet started
 ### If time
 - [ ] Play around with different initial agent position distributions on the grid (e.g.: simulate crowds/cities as clusters)
 - [ ] Make dynamic lineplot
-
+- [ ] Increase efficiency by allocating memory (+ use matrix) for the opinion history.
+- [ ] Halt execution when converged
