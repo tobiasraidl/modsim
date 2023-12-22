@@ -8,7 +8,6 @@ with open("params.yaml", "r") as file:
 
 TAU = data["TAU"]
 MU = data["MU"]
-SPACE_TYPE = data["SPACE_TYPE"]
 MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
 
 class OpinionAgent(Agent):
@@ -19,8 +18,20 @@ class OpinionAgent(Agent):
         self.id = id
     
     def step(self) -> None:
-        self.move()
+        pass
+        
+    def meet(self, partner_opinion):
+        if abs(self.opinion-partner_opinion) <= TAU:
+            self.opinion = self.opinion + MU * (partner_opinion - self.opinion)
+            
+class GridOpinionAgent(OpinionAgent):
     
+    def __init__(self, id, model):
+        super().__init__(id, model)
+    
+    def step(self) -> None:
+        self.move()
+        
     def move(self) -> None:
         # Check for free cells in neighborhood
         available_cells = self.model.grid.get_neighborhood(
@@ -37,6 +48,13 @@ class OpinionAgent(Agent):
             if (self.model.grid.is_cell_empty(cell)):
                 self.model.grid.move_agent(self, cell)
         
-    def meet(self, partner_opinion):
-        if abs(self.opinion-partner_opinion) <= TAU:
-            self.opinion = self.opinion + MU * (partner_opinion - self.opinion)
+class NetworkOpinionAgent(OpinionAgent):
+    def __init__(self, id, model):
+        super().__init__(id, model)
+        
+    def step(self) -> None:
+        self.move()
+    
+    def move(self) -> None:
+        # TODO
+        pass

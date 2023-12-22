@@ -1,9 +1,10 @@
 from mesa.visualization.modules import CanvasGrid
 from mesa.visualization.ModularVisualization import ModularServer
-from model import OpinionModel
+from model import RandomOpinionModel, GridOpinionModel, NetworkOpinionModel
 from mesa.visualization.modules import CanvasGrid, ChartModule
 from mesa.visualization.UserParam import NumberInput
 import yaml
+
 
 def agent_portrayal(agent):
     portrayal = {"Shape": "circle", "Filled": "true", "r": 0.5}
@@ -31,25 +32,9 @@ def main():
 
     NUMBER_AGENTS = data["NUMBER_AGENTS"]
     GRID_SIZE = data["GRID_SIZE"]
-
+    SPACE_TYPE = data["SPACE_TYPE"]
     CANVAS_WIDTH = 500
     CANVAS_HEIGHT = 500
-
-    simulation_params = {
-        "number_agents": NumberInput(
-            "Choose how many agents to include in the model", value=NUMBER_AGENTS
-        ),
-        "width": GRID_SIZE,
-        "height": GRID_SIZE,
-    }
-    
-    grid = CanvasGrid(
-        agent_portrayal,
-        GRID_SIZE,
-        GRID_SIZE,
-        CANVAS_WIDTH,
-        CANVAS_HEIGHT,
-    )
 
     chart_currents = ChartModule(
         [
@@ -58,11 +43,45 @@ def main():
         canvas_height=300,
         data_collector_name="datacollector_currents"
     )
-
-    server = ModularServer(OpinionModel, 
-                           [grid, chart_currents], 
-                           "Opinion Model", 
-                           simulation_params)
+    
+    if SPACE_TYPE == "random":
+        simulation_params = {
+            "number_agents": NUMBER_AGENTS
+        }
+        server = ModularServer(RandomOpinionModel, 
+                               [chart_currents],
+                               "Random Opinion Model", 
+                               simulation_params)
+        
+    elif SPACE_TYPE == "grid":
+        simulation_params = {
+            "number_agents": NUMBER_AGENTS,
+            "width": GRID_SIZE,
+            "height": GRID_SIZE
+        }
+        
+        grid = CanvasGrid(
+            agent_portrayal,
+            GRID_SIZE,
+            GRID_SIZE,
+            CANVAS_WIDTH,
+            CANVAS_HEIGHT,
+        )
+        
+        server = ModularServer(GridOpinionModel, 
+                            [grid, chart_currents], 
+                            "Grid Opinion Model", 
+                            simulation_params)
+        
+    elif SPACE_TYPE == "network":
+        simulation_params = {
+            "number_agents": NUMBER_AGENTS
+        }
+        server = ModularServer(NetworkOpinionModel, 
+                               [chart_currents],
+                               "Network Opinion Model", 
+                               simulation_params)
+        
     server.port = 8521
     server.launch()
 

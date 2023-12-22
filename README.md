@@ -33,3 +33,4 @@ Not yet started
 - [ ] Make dynamic lineplot
 - [ ] Increase efficiency by allocating memory (+ use matrix) for the opinion history.
 - [ ] Halt execution when converged
+- [ ] Calculate convergence progress each step and show as live linegraph
