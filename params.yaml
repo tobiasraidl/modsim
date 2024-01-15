@@ -4,14 +4,14 @@ SPACE_TYPE: "network"
 
 # Threshold
 # tau > 0
-TAU: 0.3
+TAU: 0.4
 
 # Adjustment parameter
 # 0 < mu < 0.5
 MU: 0.4
 
 # Number of agents
-NUMBER_AGENTS: 20
+NUMBER_AGENTS: 10
 
 GRID_SIZE: 50
 
@@ -22,11 +22,10 @@ MOORE_NEIGHBORHOOD: FALSE
 
 
 # After how many steps a lineplot of all agents should be plotted
-PLOT_AFTER: 500
-
+PLOT_AFTER: 50
 
 #Network properties:
-AVERAGE_NODE_DEGREE: 4
+AVERAGE_NODE_DEGREE: 2
 
 #optional future settings for watts strogatz graph:
 REWIRING_PROBABILITY: 0.6

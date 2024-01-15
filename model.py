@@ -22,7 +22,7 @@ AVG_NODE_DEGREE = data["AVERAGE_NODE_DEGREE"]
 class OpinionModel(Model):
     
     def __init__(self, number_agents, width, height):
-        print("test22")
+
         self.num_agents = number_agents
         self.grid = SingleGrid(width, height, True)
         self.schedule = RandomActivation(self)

@@ -29,7 +29,6 @@ cmap = matplotlib.cm.get_cmap('seismic')
 class NetworkModel(Model):
     
     def __init__(self, number_agents, width, height):
-        print("test")
         self.num_agents = number_agents
         self.schedule = RandomActivation(self)
         self.running = True
@@ -94,8 +93,11 @@ class NetworkModel(Model):
             plt.title("Agent's Opinions over Time")
             plt.show()
 
+            fig, ax = plt.subplots(1, 1, figsize=(16, 10))
+            f = self.plot_network(fig=fig, layout='kamada-kawai')
+            plt.show()
+
     def plot_network(self, fig, layout='spring', title=''):
-        print("count")
         graph = self.G
         if layout == 'kamada-kawai':
             pos = nx.kamada_kawai_layout(graph)
@@ -108,7 +110,6 @@ class NetworkModel(Model):
         ax = fig.add_subplot()
 
         opinions = [float(i.opinion) for i in self.grid.get_all_cell_contents()]
-        print(opinions)
 
         colors = [cmap(i) for i in opinions]
 
