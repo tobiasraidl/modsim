@@ -20,11 +20,13 @@ GRID_SIZE: 50
 # FALSE: Von-Neumann neighborhood
 MOORE_NEIGHBORHOOD: FALSE
 
-#Network properties:
-AVERAGE_NODE_DEGREE: 4
-
-#P_TRANS
-P_TRANS: 0.2
 
 # After how many steps a lineplot of all agents should be plotted
 PLOT_AFTER: 500
+
+
+#Network properties:
+AVERAGE_NODE_DEGREE: 4
+
+#optional future settings for watts strogatz graph:
+REWIRING_PROBABILITY: 0.6

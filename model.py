@@ -17,7 +17,6 @@ with open("params.yaml", "r") as file:
 SPACE_TYPE = data["SPACE_TYPE"]
 MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
 PLOT_AFTER = data["PLOT_AFTER"]
-P_TRANS = data["P_TRANS"]
 AVG_NODE_DEGREE = data["AVERAGE_NODE_DEGREE"]
 
 class OpinionModel(Model):

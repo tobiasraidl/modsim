@@ -17,8 +17,8 @@ with open("params.yaml", "r") as file:
 SPACE_TYPE = data["SPACE_TYPE"]
 MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
 PLOT_AFTER = data["PLOT_AFTER"]
-P_TRANS = data["P_TRANS"]
 AVG_NODE_DEGREE = data["AVERAGE_NODE_DEGREE"]
+REWIRING_PROBABILITY = data["REWIRING_PROBABILITY"]
 
 class NetworkModel(Model):
     
@@ -28,10 +28,9 @@ class NetworkModel(Model):
         self.schedule = RandomActivation(self)
         self.running = True
         prob = AVG_NODE_DEGREE / self.num_agents
-        self.ptrans = P_TRANS
-        self.G = nx.erdos_renyi_graph(n = self.num_agents, p = prob)
+        self.G = nx.connected_watts_strogatz_graph(n = self.num_agents, p = REWIRING_PROBABILITY, k = AVG_NODE_DEGREE)
         self.grid = NetworkGrid(self.G)
-        
+
         # Create Agents
         for i, node in enumerate(self.G.nodes()):
             agent = OpinionAgent(i + 1, self)
