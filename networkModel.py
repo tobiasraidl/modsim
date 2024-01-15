@@ -1,5 +1,8 @@
+import matplotlib.cm
 import networkx as nx
 from mesa import Model
+
+import agent
 from agent import OpinionAgent
 from mesa.time import RandomActivation
 from mesa.space import NetworkGrid
@@ -19,6 +22,9 @@ MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
 PLOT_AFTER = data["PLOT_AFTER"]
 AVG_NODE_DEGREE = data["AVERAGE_NODE_DEGREE"]
 REWIRING_PROBABILITY = data["REWIRING_PROBABILITY"]
+
+#blue to read for political opinion, solllte einheitlich gemacht werden
+cmap = matplotlib.cm.get_cmap('seismic')
 
 class NetworkModel(Model):
     
@@ -100,8 +106,11 @@ class NetworkModel(Model):
 
         plt.clf()
         ax = fig.add_subplot()
-       # states = [int(i.state) for i in self.grid.get_all_cell_contents()]
-        colors = ['red']
+
+        opinions = [float(i.opinion) for i in self.grid.get_all_cell_contents()]
+        print(opinions)
+
+        colors = [cmap(i) for i in opinions]
 
         nx.draw(graph, pos, node_size=self.num_agents, edge_color = 'gray', node_color = colors, alpha = 0.9, font_size = 14, ax = ax)
 

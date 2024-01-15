@@ -15,7 +15,7 @@ class OpinionAgent(Agent):
     
     def __init__(self, id, model):
         super().__init__(id, model)
-        self.opinion = np.random.uniform(0,1)
+        self.opinion = np.random.uniform(0, 1)
         self.id = id
     
     def step(self) -> None:
@@ -38,21 +38,6 @@ class OpinionAgent(Agent):
                 cell = available_cells[idx]
                 if (self.model.grid.is_cell_empty(cell)):
                     self.model.grid.move_agent(self, cell)
-
-        # elif SPACE_TYPE == "network":
-        #     print(self.model)
-        #     print(self.model.grid.get_neighbors(self.pos, include_center = False))
-        #     print(self.model.grid.is_cell_empty(self.pos))
-        #     #for node in self.model.grid.get_neighbors(self.pos, include = False)
-        #     possible_steps = [
-        #         node
-        #         for node in self.model.grid.get_neighbors(self.pos, include_center = False)
-        #         #if self.model.grid.is_cell_empty(node)
-        #     ]
-        #     if len(possible_steps) > 0:
-        #         new_position = self.random.choice(possible_steps)
-        #         print(new_position)
-        #         self.model.grid.move_agent(self, new_position)
         
     def meet(self, partner_opinion):
         if abs(self.opinion-partner_opinion) <= TAU:
