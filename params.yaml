@@ -1,6 +1,6 @@
 # Type of space (only influences which agents meet)
 # Possible values: "random", "grid", "network"
-SPACE_TYPE: "grid"
+SPACE_TYPE: "network"
 
 # Threshold
 # tau > 0
@@ -11,7 +11,7 @@ TAU: 0.3
 MU: 0.4
 
 # Number of agents
-NUMBER_AGENTS: 200
+NUMBER_AGENTS: 20
 
 GRID_SIZE: 50
 
@@ -20,5 +20,11 @@ GRID_SIZE: 50
 # FALSE: Von-Neumann neighborhood
 MOORE_NEIGHBORHOOD: FALSE
 
+#Network properties:
+AVERAGE_NODE_DEGREE: 4
+
+#P_TRANS
+P_TRANS: 0.2
+
 # After how many steps a lineplot of all agents should be plotted
-PLOT_AFTER: 1000
+PLOT_AFTER: 500

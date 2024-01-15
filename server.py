@@ -1,10 +1,19 @@
+from matplotlib import pyplot as plt
 from mesa.visualization.modules import CanvasGrid
 from mesa.visualization.ModularVisualization import ModularServer
+import networkModel
 from model import OpinionModel
+from networkModel import NetworkModel
 from mesa.visualization.modules import CanvasGrid, ChartModule
 from mesa.visualization.UserParam import NumberInput
 import yaml
 
+#TODO es werden immer 2 models instanziiert zu Beginn, warum. Ursache noch nicht gefunden, server.py instanzieert nur einmal,
+# die init funktion wird aber 2 mal ausgeführt.
+
+with open("params.yaml", "r") as file:
+    data = yaml.safe_load(file)
+SPACE_TYPE = data["SPACE_TYPE"]
 def agent_portrayal(agent):
     portrayal = {"Shape": "circle", "Filled": "true", "r": 0.5}
     
@@ -42,7 +51,8 @@ def main():
         "width": GRID_SIZE,
         "height": GRID_SIZE,
     }
-    
+
+
     grid = CanvasGrid(
         agent_portrayal,
         GRID_SIZE,
@@ -59,9 +69,17 @@ def main():
         data_collector_name="datacollector_currents"
     )
 
-    server = ModularServer(OpinionModel, 
-                           [grid, chart_currents], 
-                           "Opinion Model", 
+    # TODO cleaner: each class for each modelType
+    if SPACE_TYPE == "network":
+        server = ModularServer(NetworkModel,
+                               [chart_currents],
+                               "Opinion Model",
+                               simulation_params)
+
+    else:
+        server = ModularServer(OpinionModel,
+                           [grid, chart_currents],
+                           "Opinion Model",
                            simulation_params)
     server.port = 8521
     server.launch()

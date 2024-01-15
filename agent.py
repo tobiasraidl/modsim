@@ -20,22 +20,39 @@ class OpinionAgent(Agent):
     
     def step(self) -> None:
         self.move()
+
     
     def move(self) -> None:
-        # Check for free cells in neighborhood
-        available_cells = self.model.grid.get_neighborhood(
-            self.pos, 
-            moore=MOORE_NEIGHBORHOOD, 
-            include_center=False)
-        
-        idxs = [i for i in range(0, len(available_cells))]
-        random.shuffle(idxs)
-        
-        # Choose a random unoccupied neighboring cell
-        for idx in idxs:
-            cell = available_cells[idx]
-            if (self.model.grid.is_cell_empty(cell)):
-                self.model.grid.move_agent(self, cell)
+        if SPACE_TYPE == "grid":
+            # Check for free cells in neighborhood
+            available_cells = self.model.grid.get_neighborhood(
+                self.pos,
+                moore=MOORE_NEIGHBORHOOD,
+                include_center=False)
+
+            idxs = [i for i in range(0, len(available_cells))]
+            random.shuffle(idxs)
+
+            # Choose a random unoccupied neighboring cell
+            for idx in idxs:
+                cell = available_cells[idx]
+                if (self.model.grid.is_cell_empty(cell)):
+                    self.model.grid.move_agent(self, cell)
+
+        # elif SPACE_TYPE == "network":
+        #     print(self.model)
+        #     print(self.model.grid.get_neighbors(self.pos, include_center = False))
+        #     print(self.model.grid.is_cell_empty(self.pos))
+        #     #for node in self.model.grid.get_neighbors(self.pos, include = False)
+        #     possible_steps = [
+        #         node
+        #         for node in self.model.grid.get_neighbors(self.pos, include_center = False)
+        #         #if self.model.grid.is_cell_empty(node)
+        #     ]
+        #     if len(possible_steps) > 0:
+        #         new_position = self.random.choice(possible_steps)
+        #         print(new_position)
+        #         self.model.grid.move_agent(self, new_position)
         
     def meet(self, partner_opinion):
         if abs(self.opinion-partner_opinion) <= TAU:
