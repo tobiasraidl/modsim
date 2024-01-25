@@ -18,7 +18,6 @@ SPACE_TYPE = data["SPACE_TYPE"]
 MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
 PLOT_AFTER = data["PLOT_AFTER"]
 AVG_NODE_DEGREE = data["AVERAGE_NODE_DEGREE"]
-SIGMA = data["SIGMA"]
 
 class OpinionModel(Model):
     

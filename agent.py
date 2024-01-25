@@ -10,13 +10,13 @@ TAU = data["TAU"]
 MU = data["MU"]
 SPACE_TYPE = data["SPACE_TYPE"]
 MOORE_NEIGHBORHOOD = data["MOORE_NEIGHBORHOOD"]
-SIGMA = data["SIGMA"]
+
 
 class OpinionAgent(Agent):
     
     def __init__(self, id, model):
         super().__init__(id, model)
-        self.opinion = np.clip(np.random.normal(0.5, SIGMA), 0, 1)
+        self.opinion = np.random.uniform(0, 1)
         self.id = id
     
     def step(self) -> None:
