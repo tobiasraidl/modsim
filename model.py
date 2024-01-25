@@ -62,7 +62,7 @@ class OpinionModel(Model):
         id1, id2 = random.sample(range(0, self.num_agents), 2)
         a1 = self.schedule.agents[id1]
         a2 = self.schedule.agents[id2]
-        self.agents_meet()
+        self.agents_meet(a1, a2)
     
     def step_grid(self):
         shuffled_agents = random.sample(self.schedule.agents, len(self.schedule.agents))

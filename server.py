@@ -35,6 +35,7 @@ def agent_portrayal(agent):
     return portrayal
 
 def main():
+
     with open("params.yaml", "r") as file:
         data = yaml.safe_load(file)
 
@@ -81,6 +82,8 @@ def main():
                            [grid, chart_currents],
                            "Opinion Model",
                            simulation_params)
+        print("hallo")
+    print("hallo")
     server.port = 8521
     server.launch()
 
