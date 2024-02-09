@@ -1,22 +1,21 @@
 # Agent Based Opinion Model
-Random, grid and network structured agent based opinion models  
-Configurate model parameters in params.yaml  
-Execute server.py in order to run the model
-
+Random, grid and network structured agent based opinion models
 ![plot](./example_lineplot.png)
 
-## Random Model
-Each step 2 agents are randomly selected.
-
-## Grid Model
-Each step 2 neighboring agents are randomly selected.
-
-## Network Model
-Not yet started
-
 ## Setup
-`pip install mesa`
-`pip install seaborn`
+`pip install mesa`  
+`pip install seaborn`  
+`pip install numpy`  
+`pip install pandas`  
+
+## Run
+Run the server.py file  
+`python server.py`  
+Once the server started, a new browser tab should open. Click "Start" on the top right.
+Each 100 steps a line plot will pop up displaying a lineplot of the agents opinions. Depending on SPACE_TYPE which you can select in the params.yaml, other plots may additionally pop up. The simulation will hault while plots are actively displayed and continue once closed.
+
+Checkout the params.yaml to not only set desired model parameters but also any other simulation configurations.
+
 
 ## TODO
 - [x] Implement logic for agents to not move on occupied fields
@@ -24,12 +23,12 @@ Not yet started
 - [x] Implement easy switch between random and grid version (boolean in param.yaml?)
 - [x] Better color scheme for grid representation
 - [x] Implement logic for agent meetups in grid version
-- [ ] Implement network version
+- [x] Implement network version
 - [ ] Make initial opinion distribution normal
 - [ ] ...
 
 ### If time
-- [ ] Play around with different initial agent position distributions on the grid (e.g.: simulate crowds/cities as clusters)
+- [x] Play around with different initial agent position distributions on the grid (e.g.: simulate crowds/cities as clusters)
 - [ ] Make dynamic lineplot
-- [ ] Increase efficiency by allocating memory (+ use matrix) for the opinion history.
+- [ ] Increase efficiency by preallocating memory (+ use matrix) for the opinion history.
 - [ ] Halt execution when converged

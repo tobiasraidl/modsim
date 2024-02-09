@@ -8,12 +8,10 @@ from mesa.visualization.modules import CanvasGrid, ChartModule
 from mesa.visualization.UserParam import NumberInput
 import yaml
 
-#TODO es werden immer 2 models instanziiert zu Beginn, warum. Ursache noch nicht gefunden, server.py instanzieert nur einmal,
-# die init funktion wird aber 2 mal ausgeführt.
-
 with open("params.yaml", "r") as file:
     data = yaml.safe_load(file)
 SPACE_TYPE = data["SPACE_TYPE"]
+
 def agent_portrayal(agent):
     portrayal = {"Shape": "circle", "Filled": "true", "r": 0.5}
     
@@ -46,9 +44,7 @@ def main():
     CANVAS_HEIGHT = 500
 
     simulation_params = {
-        "number_agents": NumberInput(
-            "Choose how many agents to include in the model", value=NUMBER_AGENTS
-        ),
+        "number_agents": NUMBER_AGENTS,
         "width": GRID_SIZE,
         "height": GRID_SIZE,
     }
@@ -62,28 +58,27 @@ def main():
         CANVAS_HEIGHT,
     )
 
-    chart_currents = ChartModule(
-        [
-            {"Label": "opinion_median", "Color": "black"},
-        ],
-        canvas_height=300,
-        data_collector_name="datacollector_currents"
-    )
-
-    # TODO cleaner: each class for each modelType
-    if SPACE_TYPE == "network":
-        server = ModularServer(NetworkModel,
-                               [chart_currents],
-                               "Opinion Model",
-                               simulation_params)
-
-    else:
+    if SPACE_TYPE == "random":
         server = ModularServer(OpinionModel,
-                           [grid, chart_currents],
-                           "Opinion Model",
-                           simulation_params)
-        print("hallo")
-    print("hallo")
+                            [],
+                            "Opinion Model",
+                            simulation_params)
+    elif SPACE_TYPE == "grid":
+        server = ModularServer(OpinionModel,
+                            [grid],
+                            "Opinion Model",
+                            simulation_params)
+    elif SPACE_TYPE == "network":
+        server = ModularServer(NetworkModel,
+                            [],
+                            "Opinion Model",
+                            simulation_params)
+    else:
+        print(f"{SPACE_TYPE} is not an appropriate space type. Change it to 'random grid or network'")
+
+
+
+
     server.port = 8521
     server.launch()
 

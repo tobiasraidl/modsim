@@ -86,7 +86,6 @@ class OpinionModel(Model):
         
         if self.schedule.steps % PLOT_AFTER == 0:
             df = pd.DataFrame(self.opinions_history)
-            print(df)
             for column in df.columns:
                 if column != "index":
                     sns.lineplot(x=df.index, y=column, data=df)

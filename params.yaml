@@ -1,6 +1,6 @@
 # Type of space (only influences which agents meet)
 # Possible values: "random", "grid", "network"
-SPACE_TYPE: "network"
+SPACE_TYPE: "random"
 
 # Threshold
 # tau > 0
@@ -11,9 +11,13 @@ TAU: 0.2
 MU: 0.4
 
 # Number of agents
-NUMBER_AGENTS: 20
+NUMBER_AGENTS: 30
 
-GRID_SIZE: 25
+# Number of cells on each grid side
+GRID_SIZE: 10
+
+# Initial opinion variance
+SIGMA: 0.2
 
 # Neighborhood definition
 # TRUE: Moore neighborhood
@@ -24,8 +28,8 @@ MOORE_NEIGHBORHOOD: FALSE
 # After how many steps a lineplot of all agents should be plotted
 PLOT_AFTER: 100
 
-#Network properties:
+# Network properties:
 AVERAGE_NODE_DEGREE: 3
 
-#optional future settings for watts strogatz graph:
+# Optional future settings for watts strogatz graph:
 REWIRING_PROBABILITY: 0.6
