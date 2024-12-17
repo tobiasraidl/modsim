@@ -25,9 +25,5 @@ Checkout the params.yaml to not only set desired model parameters but also any o
 - [x] Implement logic for agent meetups in grid version
 - [x] Implement network version
 - [x] Make initial opinion distribution gaussian
-
-### If time
 - [x] Play around with different initial agent position distributions on the grid (e.g.: simulate crowds/cities as clusters)
-- [ ] Make dynamic lineplot
-- [ ] Increase efficiency by preallocating memory (+ use matrix) for the opinion history.
-- [ ] Halt execution when converged
+
